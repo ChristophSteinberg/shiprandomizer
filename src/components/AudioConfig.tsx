@@ -1,27 +1,30 @@
 "use strict";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ConfigContext } from "../App";
 
 function AudioConfig() {
-  const [volume, setVolume] = useState(getConfig().sound.volume);
-  const [file, setFile] = useState(getConfig().sound.file);
+  const [config, setConfig] = useContext(ConfigContext);
+  const [volume, setVolume] = useState(
+    config?.sound ? config.sound.volume : 0.3
+  );
+  const [file, setFile] = useState(config?.sound ? config.sound.file : "");
 
   function handleChanged(volume: number) {
     setVolume(volume);
   }
 
   function handleButtonPlayClick() {
-    const config = getConfig();
     var audio = new Audio(`assets/sounds/${config.sound.file}.mp3`);
     audio.volume = config.sound.volume;
     audio.play();
   }
 
   useEffect(() => {
-    const config = getConfig();
-    config.sound.volume = volume;
-    config.sound.file = file;
-    storeConfig(config);
+    const newConfig = { ...config };
+    newConfig.sound.volume = volume;
+    newConfig.sound.file = file;
+    setConfig(newConfig);
   }, [volume, file]);
 
   return (

@@ -1,6 +1,6 @@
 "use strict";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   Ship,
   Tier,
@@ -9,12 +9,12 @@ import {
   ShipTypeValues,
   TierValues,
 } from "../models/Config";
-import useConfig from "../hooks/useConfig";
 import Search from "./Search";
 import Profile from "./Profile";
+import { ConfigContext } from "../App";
 
-function Config() {
-  const [config, setConfig] = useConfig();
+function ConfigPanel() {
+  const [config, setConfig] = useContext(ConfigContext);
   const [ships, setShips] = useState<Ship[]>([]);
   const [configVisible, setConfigVisible] = useState(false);
   const [highlightedShips, setHighlightedShips] = useState<number[]>([]);
@@ -372,4 +372,4 @@ function Config() {
   );
 }
 
-export default Config;
+export default ConfigPanel;

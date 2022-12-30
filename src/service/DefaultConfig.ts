@@ -23,6 +23,7 @@ const DefaultConfig: Config = {
     by: "id",
     order: "descending",
   },
+  profiles: [],
   ships: [
     {
       name: "Black Swan",

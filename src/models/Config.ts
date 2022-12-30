@@ -20,6 +20,7 @@ export type ShipType = typeof ShipTypeValues[number];
 
 export interface Config {
   version: number;
+  lastChange?: Date;
   configVisible: boolean;
   descriptionVisible: boolean;
   sound: Sound;

@@ -1,11 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import "./App.css";
-import { Ship } from "./models/Config";
 import useConfig from "./hooks/useConfig";
 import Randomizer from "./service/Randomizer";
 import JSConfetti from "js-confetti";
-import Config from "./components/Config";
+import ConfigPanel from "./components/ConfigPanel";
 import Description from "./components/Description";
+import DefaultConfig from "./service/DefaultConfig";
+import { Ship, Config } from "./models/Config";
+
+type ConfigContextType = [config: Config, setConfig: (config: Config) => void];
+
+const defaultValue: ConfigContextType = [DefaultConfig, (config: Config) => {}];
+
+export const ConfigContext = createContext<ConfigContextType>(defaultValue);
 
 function App() {
   const [config, setConfig] = useConfig();
@@ -16,6 +23,7 @@ function App() {
   const jsConfetti = useRef(new JSConfetti());
 
   function goHandler() {
+    console.log(config.lastChange);
     setRunning(true);
     randomizer.current.ships = config.ships;
     randomizer.current.start();
@@ -40,27 +48,31 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Config />
+    <ConfigContext.Provider value={[config, setConfig]}>
+      <div>
+        <ConfigPanel />
 
-      <div className="content">
-        <div className="panel">
-          <div className="ship-name">{currentShip ? currentShip.name : ""}</div>
-          <div className="ship-nation">
-            {currentShip ? currentShip.nation : ""}
-          </div>
-          <div className="control">
-            <button
-              onClick={goHandler}
-              disabled={running}
-              className="go"
-            ></button>
+        <div className="content">
+          <div className="panel">
+            <div className="ship-name">
+              {currentShip ? currentShip.name : ""}
+            </div>
+            <div className="ship-nation">
+              {currentShip ? currentShip.nation : ""}
+            </div>
+            <div className="control">
+              <button
+                onClick={goHandler}
+                disabled={running}
+                className="go"
+              ></button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Description />
-    </div>
+        <Description />
+      </div>
+    </ConfigContext.Provider>
   );
 }
 

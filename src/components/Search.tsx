@@ -1,7 +1,7 @@
 "use strict";
 
-import { FC, useEffect, useState } from "react";
-import useConfig from "../hooks/useConfig";
+import { FC, useContext, useEffect, useState } from "react";
+import { ConfigContext } from "../App";
 
 interface Props {
   onShipIdsFound: (ships: number[]) => void;
@@ -10,7 +10,7 @@ interface Props {
 const Search: FC<Props> = ({ onShipIdsFound }: Props) => {
   const [searchText, setSearchText] = useState("");
   const [foundShips, setfoundShips] = useState<number[]>([]);
-  const [config, setConfig] = useConfig();
+  const [config, setConfig] = useContext(ConfigContext);
 
   function search(name: string) {
     if (!config) {

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import useConfig from "../hooks/useConfig";
+import { useContext, useEffect, useState } from "react";
 import { Config } from "../models/Config";
+import { ConfigContext } from "../App";
 
 export default function Description() {
-  const [config, setConfig] = useConfig();
+  const [config, setConfig] = useContext(ConfigContext);
   const [open, setOpen] = useState(config ? config.descriptionVisible : true);
 
   useEffect(() => {

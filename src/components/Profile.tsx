@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react";
-import useConfig from "../hooks/useConfig";
+import { FC, useContext, useEffect, useState } from "react";
 import { UserProfile } from "../models/Config";
+import { ConfigContext } from "../App";
 
 interface Props {
   onGetSelectedShipIdsRequest?: () => number[];
@@ -14,10 +14,10 @@ const Profile: FC<Props> = ({
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
   const [newProfileName, setNewProfileName] = useState("");
   const [removeMode, setRemoveMode] = useState(false);
-  const [config, setConfig] = useConfig();
+  const [config, setConfig] = useContext(ConfigContext);
 
   useEffect(() => {
-    if (!config.profiles) return;
+    if (!config?.profiles) return;
     setProfiles(config.profiles);
   }, []);
 
@@ -71,7 +71,7 @@ const Profile: FC<Props> = ({
   useEffect(() => {
     const newConfig = { ...config };
     newConfig.profiles = profiles;
-    setConfig(config);
+    setConfig(newConfig);
   }, [profiles]);
 
   function profileButton(p: UserProfile) {

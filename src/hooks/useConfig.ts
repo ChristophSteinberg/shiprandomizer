@@ -1,9 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Config } from "../models/Config";
 import DefaultConfig from "../service/DefaultConfig";
 
 const useConfig = (): [Config, (config: Config) => void] => {
-  const [config, setConfigState] = useState<Config>(() => {
+  const [config, setConfig] = useState<Config>(() => {
     let config: Config | null = null;
     try {
       if (localStorage) {
@@ -35,10 +35,11 @@ const useConfig = (): [Config, (config: Config) => void] => {
     return config as Config;
   });
 
-  function setConfig(config: Config) {
-    setConfigState(config);
+  useEffect(() => {
+    config.lastChange = new Date();
+    console.log("Config chnaged", config.lastChange);
     storeConfig(config);
-  }
+  }, [config]);
 
   function storeConfig(config: Config) {
     localStorage.setItem("config", JSON.stringify(config));
