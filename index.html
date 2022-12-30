@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="scripts/vendor/js-confetti.browser.js"></script>
     <title>Ship Randomizer</title>
     <link
       rel="apple-touch-icon"
@@ -78,72 +79,9 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" href="styles.css?version=2d45g4gh5" />
-
-    <script src="scripts/vendor/js-confetti.browser.js"></script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.js"></script>
-    <script src="https://unpkg.com/@babel/standalone@7/babel.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
-
-    <script src="scripts/vendor/polyfill.min.js"></script>
-    <script src="scripts/vendor/babel.min.js"></script>
-    <script src="scripts/vendor/react.production.min.js"></script>
-    <script src="scripts/vendor/react-dom.production.min.js"></script>
-
-    <script
-      type="text/babel"
-      src="scripts/defaultData.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/randomizer.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/storage.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/config.js?version=2d45g4gh5"
-    ></script>
-    <script type="text/babel" src="scripts/app.js?version=2d45g4gh5"></script>
-    <script
-      type="text/babel"
-      src="scripts/audioconfig.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/search.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/profile.js?version=2d45g4gh5"
-    ></script>
-    <script
-      type="text/babel"
-      src="scripts/description.js?version=2d45g4gh5"
-    ></script>
-    <!-- <script type="text/babel" src="scripts/language.js"></script> -->
   </head>
-
-  <script type="text/babel" data-type="module">
-    const container = document.getElementById("root");
-    const root = ReactDOM.createRoot(container);
-    root.render(<App />);
-  </script>
-  <!-- <script>
-    document.querySelector('.back-to-top').addEventListener('click', function(event) {
-      event.preventDefault();
-      document.querySelector('html').scrollIntoView({
-        behavior: 'smooth'
-      });
-    });
-  </script>
-  <button class="back-to-top">Back to Top</button> -->
-  <!-- Backt to Top Button Script - without funktion -->
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,19 +1,20 @@
-class Randomizer {
+import { Ship } from "../models/Config";
+
+export default class Randomizer {
   speed = 50;
   duration = 3000;
-  ships = null;
+  ships: Ship[] = [];
 
-  randomizerStoppedHandler = null;
-  changeShipHandler = null;
+  randomizerStoppedHandler: (() => void) | null = null;
+  changeShipHandler: ((ship: Ship) => void) | null = null;
 
-  #interval = null;
+  #interval = 0;
 
-  constructor() { }
+  constructor() {}
 
   start() {
     this.#interval = setInterval(() => {
-      const shipsToChoose = this.ships
-        .filter((s) => s.selected)
+      const shipsToChoose = this.ships.filter((s) => s.selected);
       const random = Math.floor(Math.random() * shipsToChoose.length);
       if (this.changeShipHandler != null) {
         this.changeShipHandler(shipsToChoose[random]);
@@ -26,7 +27,7 @@ class Randomizer {
   }
 
   stop() {
-    this.abort()
+    this.abort();
     if (this.randomizerStoppedHandler) {
       this.randomizerStoppedHandler();
     }
@@ -35,8 +36,7 @@ class Randomizer {
   abort() {
     if (this.#interval) {
       clearInterval(this.#interval);
-      this.#interval = null;
+      this.#interval = 0;
     }
   }
 }
-
