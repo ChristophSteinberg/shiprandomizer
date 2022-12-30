@@ -30,7 +30,7 @@ function App() {
       setCurrentShip(ship);
     };
     randomizer.current.randomizerStoppedHandler = () => {
-      var audio = new Audio(`assets/sounds/${config.sound.file}.mp3`);
+      var audio = new Audio(`sounds/${config.sound.file}.mp3`);
       audio.volume = config.sound ? config.sound.volume : 0.3;
       audio.play();
 

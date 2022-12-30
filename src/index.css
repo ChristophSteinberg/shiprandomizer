@@ -4,7 +4,7 @@
 }
 
 html {
-  background: url(assets/images/background.jpg) no-repeat center center fixed;
+  background: url(/images/background.jpg) no-repeat center center fixed;
   background-size: cover;
   background-color: #1e1e1e;
   color: lightgray;
@@ -144,7 +144,7 @@ select {
 button.go {
   top: 50%;
   left: 50%;
-  background-image: url("assets/images/button_go.png");
+  background-image: url("/images/button_go.png");
   border-radius: 108px;
   border: -1px double #cccccc;
   color: #eeeeee;
@@ -156,7 +156,7 @@ button.go {
 }
 
 button.go:disabled {
-  background-image: url("assets/images/radar.gif");
+  background-image: url("/images/radar.gif");
 
   transition: all 0.5s;
 }
@@ -285,6 +285,7 @@ body {
 }
 
 .description-panel-open {
+  z-index: 101;
   height: 100vh;
   max-width: 500px;
   overflow: auto;
