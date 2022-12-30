@@ -8,6 +8,8 @@ import {
   shipTypeToString,
   ShipTypeValues,
   TierValues,
+  NationValues,
+  FieldValues,
 } from "../models/Config";
 import Search from "./Search";
 import Profile from "./Profile";
@@ -34,6 +36,41 @@ function ConfigPanel() {
     setSortConfig(config.sort);
   }, []);
 
+  useEffect(() => {
+    if (!ships || ships.length === 0) {
+      return;
+    }
+    const newConfig = { ...config };
+    newConfig.ships = ships;
+    newConfig.configVisible = configVisible;
+    newConfig.sort = sortConfig;
+    setConfig(newConfig);
+  }, [ships, configVisible, sortConfig]);
+
+  useEffect(() => {
+    if (!ships || ships.length === 0) {
+      return;
+    }
+    const toSort = [...ships];
+
+    if (!sortConfig) return;
+
+    type shipProps = keyof Ship;
+
+    toSort.sort((a, b) => {
+      const aValue = a[sortConfig.by as shipProps];
+      const bValue = b[sortConfig.by as shipProps];
+
+      if (sortConfig.order === "descending") {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    });
+
+    setShips(toSort);
+  }, [sortConfig]);
+
   function setAllSelectionState(selected: boolean) {
     setShips((p) => {
       p.forEach((s) => (s.selected = selected));
@@ -41,11 +78,11 @@ function ConfigPanel() {
     });
   }
 
-  function onListItemChanged(id: number) {
+  function selectShip(id: number, select: boolean) {
     const index = ships.findIndex((s) => s.id == id);
     if (index !== -1) {
       setShips((p) => {
-        p[index].selected = !p[index].selected;
+        p[index].selected = select;
         return [...p];
       });
     }
@@ -152,41 +189,6 @@ function ConfigPanel() {
     setConfig(newConfig);
   }
 
-  useEffect(() => {
-    if (!ships || ships.length === 0) {
-      return;
-    }
-    const newConfig = { ...config };
-    newConfig.ships = ships;
-    newConfig.configVisible = configVisible;
-    newConfig.sort = sortConfig;
-    setConfig(newConfig);
-  }, [ships, configVisible, sortConfig]);
-
-  useEffect(() => {
-    if (!ships || ships.length === 0) {
-      return;
-    }
-    const toSort = [...ships];
-
-    if (!sortConfig) return;
-
-    type shipProps = keyof Ship;
-
-    toSort.sort((a, b) => {
-      const aValue = a[sortConfig.by as shipProps];
-      const bValue = b[sortConfig.by as shipProps];
-
-      if (sortConfig.order === "descending") {
-        return aValue > bValue ? 1 : -1;
-      } else {
-        return aValue < bValue ? 1 : -1;
-      }
-    });
-
-    setShips(toSort);
-  }, [sortConfig]);
-
   return (
     <div>
       <div
@@ -275,19 +277,7 @@ function ConfigPanel() {
               <span>
                 <p>Select Nation: </p>
               </span>
-              {[
-                "U.K.",
-                "Japan",
-                "France",
-                "U.S.A.",
-                "U.S.S.R.",
-                "Italy",
-                "Germany",
-                "Netherlands",
-                "Europe",
-                "Pan-America",
-                "Pan-Asia",
-              ].map((t) => (
+              {NationValues.map((t) => (
                 <button key={t} onClick={() => changeNationSelection(t, true)}>
                   {t}
                 </button>
@@ -317,19 +307,15 @@ function ConfigPanel() {
           <table>
             <thead>
               <tr>
-                {["Id", "", "Name", "Nation", "Tier", "Kind", "Type"].map(
-                  (t) => (
-                    <th
-                      key={t}
-                      onClick={() =>
-                        handleTableHeadClick(t.toLocaleLowerCase())
-                      }
-                    >
-                      {t}
-                      <UpDown name={t.toLocaleLowerCase()}></UpDown>
-                    </th>
-                  )
-                )}
+                {FieldValues.map((t) => (
+                  <th
+                    key={t}
+                    onClick={() => handleTableHeadClick(t.toLocaleLowerCase())}
+                  >
+                    {t}
+                    <UpDown name={t.toLocaleLowerCase()}></UpDown>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody ref={shipTable}>
@@ -338,29 +324,33 @@ function ConfigPanel() {
                   <td>{s.id}.</td>
                   <td>
                     <input
-                      id={`s.id`}
+                      id={`${s.id}`}
                       type="checkbox"
                       checked={s.selected}
-                      onChange={() => onListItemChanged(s.id)}
-                      name={`s.id`}
+                      onChange={() => {
+                        selectShip(s.id, !s.selected);
+                      }}
+                      name={`${s.id}`}
                     />
                   </td>
                   <td
                     className={isShipHighlighted(s.id) ? "highlighted-row" : ""}
                   >
-                    <label htmlFor={`s.id`}>{s.name}</label>
+                    <label htmlFor={`${s.id}`}>{s.name}</label>
                   </td>
                   <td>
-                    <label htmlFor={`s.id`}>{s.nation}</label>
+                    <label htmlFor={`${s.id}`}>{s.nation}</label>
                   </td>
                   <td>
-                    <label htmlFor={`s.id`}>{s.tier}</label>
+                    <label htmlFor={`${s.id}`}>{s.tier}</label>
                   </td>
                   <td>
-                    <label htmlFor={`s.id`}>{s.kind}</label>
+                    <label htmlFor={`${s.id}`}>{s.kind}</label>
                   </td>
                   <td>
-                    <label htmlFor={`s.id`}>{shipTypeToString(s.type)}</label>
+                    <label htmlFor={`${s.id}`}>
+                      {shipTypeToString(s.type)}
+                    </label>
                   </td>
                 </tr>
               ))}
