@@ -126,15 +126,20 @@ function ConfigPanel() {
       return;
     }
 
-    debugger;
+    const f = shipTable.current.children;
 
-    // const trs = Array.from(shipTable.current.children).find((s) =>
-    //   allFoundShips.includes(parseInt(s.dataset.id))
-    // );
+    console.dir(shipTable.current.children);
 
-    // if (trs) {
-    //   trs.scrollIntoView({ block: "center", inline: "nearest" });
-    // }
+    const trs = Array.from(shipTable.current.children).find((s) => {
+      console.dir(s);
+      if (s instanceof HTMLElement && s.dataset.id) {
+        allFoundShips.includes(parseInt(s.dataset.id));
+      }
+    });
+
+    if (trs) {
+      trs.scrollIntoView({ block: "center", inline: "nearest" });
+    }
   }
 
   function isShipHighlighted(id: number) {
