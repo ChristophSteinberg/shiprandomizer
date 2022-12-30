@@ -23,7 +23,6 @@ function App() {
   const jsConfetti = useRef(new JSConfetti());
 
   function goHandler() {
-    config.lastChange;
     setRunning(true);
     randomizer.current.ships = config.ships;
     randomizer.current.start();

@@ -126,12 +126,7 @@ function ConfigPanel() {
       return;
     }
 
-    const f = shipTable.current.children;
-
-    console.dir(shipTable.current.children);
-
     const trs = Array.from(shipTable.current.children).find((s) => {
-      console.dir(s);
       if (s instanceof HTMLElement && s.dataset.id) {
         allFoundShips.includes(parseInt(s.dataset.id));
       }

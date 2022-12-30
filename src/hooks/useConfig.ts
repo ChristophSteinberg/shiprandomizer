@@ -36,8 +36,6 @@ const useConfig = (): [Config, (config: Config) => void] => {
   });
 
   useEffect(() => {
-    config.lastChange = new Date();
-    console.log("Config chnaged", config.lastChange);
     storeConfig(config);
   }, [config]);
 
