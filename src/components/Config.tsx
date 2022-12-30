@@ -1,9 +1,17 @@
 "use strict";
 
 import { useEffect, useRef, useState } from "react";
-import { Ship, Tier, Type } from "../models/Config";
+import {
+  Ship,
+  Tier,
+  ShipType,
+  shipTypeToString,
+  ShipTypeValues,
+  TierValues,
+} from "../models/Config";
 import useConfig from "../hooks/useConfig";
 import Search from "./Search";
+import Profile from "./Profile";
 
 function Config() {
   const [config, setConfig] = useConfig();
@@ -18,7 +26,7 @@ function Config() {
     config?.sound ? config.sound.volume == 0 : false
   );
 
-  const shipTable = useRef<HTMLTableSectionElement>();
+  const shipTable = useRef<HTMLTableSectionElement>(null);
 
   useEffect(() => {
     setShips(config.ships);
@@ -60,7 +68,7 @@ function Config() {
     });
   }
 
-  function setSelectShipType(shipType: Type, selected: boolean) {
+  function setSelectShipType(shipType: ShipType, selected: boolean) {
     setShips((s) => {
       s.filter((ss) => ss.type === shipType).forEach(
         (s) => (s.selected = selected)
@@ -92,8 +100,8 @@ function Config() {
     // }
   }
 
-  function isShipHighlighted(id) {
-    return highlightedShips.includes(parseInt(id));
+  function isShipHighlighted(id: number) {
+    return highlightedShips.includes(id);
   }
 
   function getSelectedShipIds() {
@@ -148,7 +156,7 @@ function Config() {
     if (!ships || ships.length === 0) {
       return;
     }
-    const newConfig = { ...config };;
+    const newConfig = { ...config };
     newConfig.ships = ships;
     newConfig.configVisible = configVisible;
     newConfig.sort = sortConfig;
@@ -163,12 +171,16 @@ function Config() {
 
     if (!sortConfig) return;
 
+    type shipProps = keyof Ship;
+
     toSort.sort((a, b) => {
+      const aValue = a[sortConfig.by as shipProps];
+      const bValue = b[sortConfig.by as shipProps];
+
       if (sortConfig.order === "descending") {
-        return a[sortConfig.by] > b[sortConfig.by] ? 1 : -1;
+        return aValue > bValue ? 1 : -1;
       } else {
-        return a[sortConfig.
-        ] < b[sortConfig.by] ? 1 : -1;
+        return aValue < bValue ? 1 : -1;
       }
     });
 
@@ -178,7 +190,7 @@ function Config() {
   return (
     <div>
       <div
-        class={
+        className={
           configVisible
             ? "config-button-panel config-button-panel-open"
             : "config-button-panel"
@@ -227,7 +239,7 @@ function Config() {
               >
                 Select Tier:
               </span>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((t) => (
+              {TierValues.map((t) => (
                 <button key={t} onClick={() => changeTierSelection(t, true)}>
                   {t}
                 </button>
@@ -253,7 +265,7 @@ function Config() {
               >
                 Unselect Tier:
               </span>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((t) => (
+              {TierValues.map((t) => (
                 <button key={t} onClick={() => changeTierSelection(t, false)}>
                   {t}
                 </button>
@@ -261,7 +273,7 @@ function Config() {
             </div>
             <div>
               <span>
-                <p>Select Nation: 🇬🇧 🇯🇵 🇫🇷 🇺🇸 🇷🇺 🇮🇹 🇩🇪 🇳🇱 </p>
+                <p>Select Nation: </p>
               </span>
               {[
                 "U.K.",
@@ -286,13 +298,14 @@ function Config() {
               <span>
                 <p>Select Type </p>
               </span>
-              {["A", "B", "C", "D", "S"].map((t) => (
+              {ShipTypeValues.map((t) => (
                 <button key={t} onClick={() => setSelectShipType(t, true)}>
-                  {mapShipToString(t)}
+                  {shipTypeToString(t)}
                 </button>
               ))}
             </div>
           </div>
+
           <Profile
             onSetSelectShipIds={(ds) => {
               setSelectedShipByIds(ds);
@@ -307,6 +320,7 @@ function Config() {
                 {["Id", "", "Name", "Nation", "Tier", "Kind", "Type"].map(
                   (t) => (
                     <th
+                      key={t}
                       onClick={() =>
                         handleTableHeadClick(t.toLocaleLowerCase())
                       }
@@ -346,7 +360,7 @@ function Config() {
                     <label htmlFor={`s.id`}>{s.kind}</label>
                   </td>
                   <td>
-                    <label htmlFor={`s.id`}>{mapType(s.type)}</label>
+                    <label htmlFor={`s.id`}>{shipTypeToString(s.type)}</label>
                   </td>
                 </tr>
               ))}
@@ -357,3 +371,5 @@ function Config() {
     </div>
   );
 }
+
+export default Config;

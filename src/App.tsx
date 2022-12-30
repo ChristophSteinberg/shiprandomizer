@@ -4,6 +4,8 @@ import { Ship } from "./models/Config";
 import useConfig from "./hooks/useConfig";
 import Randomizer from "./service/Randomizer";
 import JSConfetti from "js-confetti";
+import Config from "./components/Config";
+import Description from "./components/Description";
 
 function App() {
   const [config, setConfig] = useConfig();
@@ -39,7 +41,7 @@ function App() {
 
   return (
     <div>
-      {/* <Config></Config> */}
+      <Config />
 
       <div className="content">
         <div className="panel">
@@ -57,7 +59,7 @@ function App() {
         </div>
       </div>
 
-      {/* <Description></Description> */}
+      <Description />
     </div>
   );
 }

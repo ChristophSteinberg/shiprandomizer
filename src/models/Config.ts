@@ -2,7 +2,7 @@ export interface Ship {
   name: string;
   nation: string;
   tier: Tier;
-  type: Type;
+  type: ShipType;
   kind: Kind;
   torpedos: string;
   caliber: string;
@@ -10,11 +10,13 @@ export interface Ship {
   selected: boolean;
 }
 
-export type Tier = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+export const TierValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
+export type Tier = typeof TierValues[number];
 
 export type Kind = "N" | "P";
 
-export type Type = "A" | "B" | "C" | "D" | "S";
+export const ShipTypeValues = ["A", "B", "C", "D", "S"] as const;
+export type ShipType = typeof ShipTypeValues[number];
 
 export interface Config {
   version: number;
@@ -23,7 +25,7 @@ export interface Config {
   sound: Sound;
   sort: Sort;
   ships: Ship[];
-  profiles: Profile[];
+  profiles: UserProfile[];
 }
 
 export interface Sound {
@@ -36,13 +38,13 @@ export interface Sort {
   order: string;
 }
 
-export interface Profile {
+export interface UserProfile {
   id: number;
   name: string;
-  shipIds: [number];
+  shipIds: number[];
 }
 
-export function mapShipToString(shipType: Type) {
+export function shipTypeToString(shipType: ShipType) {
   switch (shipType) {
     case "A":
       return "Aircraft Carrier";
