@@ -47,7 +47,7 @@ function AudioConfig() {
         value={file}
         onChange={(s) => setFile(s.target.value)}
       >
-        {["explosion1", "explosion2"].map((s) => (
+        {["explosion1"].map((s) => (
           <option key={s} value={s}>
             {s}
           </option>

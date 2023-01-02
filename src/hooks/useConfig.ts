@@ -32,6 +32,8 @@ const useConfig = (): [Config, (config: Config) => void] => {
       }
     }
 
+    config.sound.file = "explosion1";
+
     return config as Config;
   });
 
