@@ -378,3 +378,27 @@ body {
     height: 480px;
   }
 }
+.info-panel {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 260px;
+  height: 90px;
+  background-color: rgb(31, 30, 30);
+  color: #fff;
+  display: block; /* Panel immer sichtbar machen */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 2px double #fff; /* Doppelte Linie, 2 px dick, weiße Farbe */
+  display: block; /* Text als Block darstellen */
+  text-align: center; /* Text zentrieren */
+}
+
+.info-panel img {
+  float: left;
+  margin-top: 4px; /* Abstand vom oberen Rand */
+  margin-left: 4px;
+  border-radius: 10%; /* Runder Rahmen */
+  border: 2px double #fff;
+  
+}
