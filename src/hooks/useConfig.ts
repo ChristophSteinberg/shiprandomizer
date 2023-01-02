@@ -32,7 +32,7 @@ const useConfig = (): [Config, (config: Config) => void] => {
       }
     }
 
-    config.sound.file = "explosion1";
+    config.sound.file = "bell";
 
     return config as Config;
   });
