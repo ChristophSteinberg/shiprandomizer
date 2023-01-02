@@ -53,19 +53,22 @@ function App() {
 
         <div className="content">
           <div className="panel">
+            <div className="logo-top"></div>
             <div className="ship-name">
               {currentShip ? currentShip.name : ""}
             </div>
             <div className="ship-nation">
               {currentShip ? currentShip.nation : ""}
             </div>
-            <div className="control">
+            <div className="go-button">
               <button
                 onClick={goHandler}
                 disabled={running}
                 className="go"
               ></button>
             </div>
+            <div className="logo-bottom"></div>
+            <div className="empty-bottom"></div>
           </div>
         </div>
 

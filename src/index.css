@@ -4,22 +4,13 @@
 }
 
 html {
-  background: url(/images/background.jpg) no-repeat center center fixed;
+  background: url(assets/images/background.jpg) no-repeat center center fixed;
   background-size: cover;
   background-color: #1e1e1e;
   color: lightgray;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-blocksatz {
-  text-align: center;
-}
-.blocksatz {
-  hyphens: auto;
-  text-align: justify; /* für Edge */
-  -moz-text-align-last: justify; /* für Firefox vor 58.0 */
-  text-align-last: justify;
-}
 button {
   background-color: yellow;
 }
@@ -58,13 +49,58 @@ input[type="text"] {
 .content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 600px;
 }
 
 .panel {
-  max-width: 600px;
   position: fixed;
+  background-color: hsla(0, 0%, 0%, 0.2);
+}
+
+@media (max-width: 700px) {
+  .panel {
+    width: 100%;
+  }
+  .logo-top {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .panel {
+    width: 550px;
+  }
+  .logo-top {
+    margin-top: 7rem;
+  }
+}
+
+.logo-top {
+  margin-top: 20%;
+  margin-bottom: 10%;
+
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(assets/images/logo-top.png) no-repeat center center;
+  background-size: contain;
+}
+
+.logo-bottom {
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(assets/images/logo-bottom.png) no-repeat center center;
+  background-size: contain;
+}
+
+.empty-bottom {
+  height: auto;
+  height: 100vh;
 }
 
 .ship-name {
@@ -84,7 +120,6 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
 }
 
 .ship-nation {
@@ -104,7 +139,7 @@ input[type="text"] {
   align-items: center;
 }
 
-.control {
+div.go-button {
   margin-top: 20px;
   height: 100px;
   display: flex;
@@ -144,7 +179,7 @@ select {
 button.go {
   top: 50%;
   left: 50%;
-  background-image: url("/images/button_go.png");
+  background-image: url("assets/images/button-go.png");
   border-radius: 108px;
   border: -1px double #cccccc;
   color: #eeeeee;
@@ -156,7 +191,7 @@ button.go {
 }
 
 button.go:disabled {
-  background-image: url("/images/radar.gif");
+  background-image: url("assets/images/radar.gif");
 
   transition: all 0.5s;
 }
@@ -295,10 +330,6 @@ body {
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
-}
-
-.sp-icon-close {
-  display: none !important;
 }
 
 .side-panel {
