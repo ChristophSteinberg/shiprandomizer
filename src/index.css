@@ -4,6 +4,7 @@
   --foreground-highlight-dark:hsl(50, 70%, 15%);
   --background-dark: hsl(0, 0%, 15%);
   --button-background: hsl(0, 0%, 65%);
+  --button-background-dark: hsl(0, 0%, 65%);
   --button-background-hover: hsl(0, 0%, 75%);
 }
 
@@ -133,7 +134,7 @@ button.go {
   background-image: url("assets/images/button-go.png");
   border-radius: 108px;
   border: -1px double #cccccc;
-  color: #eeeeee;
+  color: var(--foreground);
   padding: 0px;
   width: 108px;
   height: 108px;
@@ -165,7 +166,7 @@ button.go:disabled {
   display: grid;
   place-items: center;
   margin: 0;
-  color: #ffffff;
+  color: var(--foreground);
 }
 
 .mute-button-toggle {
@@ -179,7 +180,7 @@ button.go:disabled {
   display: grid;
   place-items: center;
   margin: 0;
-  color: #ffffff;
+  color: var(--foreground);
 }
 
 .description-panel-toggle {
@@ -225,7 +226,6 @@ button.go:disabled {
 .config-search {
   padding: 1rem;
   margin-bottom: 0.5rem;
-  height: 30px;
   background-color: hsl(0, 18%, 22%);
 }
 
