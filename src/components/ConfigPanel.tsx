@@ -272,13 +272,15 @@ function ConfigPanel() {
               >
                 Unselect Tier:
               </span>
-              <div className="detail">
-                {TierValues.map((t) => (
-                  <button key={t} onClick={() => changeTierSelection(t, false)}>
-                    {t}
-                  </button>
-                ))}
-              </div>
+              {TierValues.map((t) => (
+                <button
+                  className="detail"
+                  key={t}
+                  onClick={() => changeTierSelection(t, false)}
+                >
+                  {t}
+                </button>
+              ))}
             </div>
             <div className="detail">
               <span>
