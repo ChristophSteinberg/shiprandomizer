@@ -10,7 +10,7 @@ interface Props {
 const Search: FC<Props> = ({ onShipIdsFound }: Props) => {
   const [searchText, setSearchText] = useState("");
   const [foundShips, setfoundShips] = useState<number[]>([]);
-  const [config, setConfig] = useContext(ConfigContext);
+  const [config] = useContext(ConfigContext);
 
   function search(name: string) {
     if (!config) {

@@ -125,11 +125,13 @@ function ConfigPanel() {
     if (!shipTable?.current) {
       return;
     }
+    console.dir(shipTable.current.children)
 
     const trs = Array.from(shipTable.current.children).find((s) => {
       if (s instanceof HTMLElement && s.dataset.id) {
-        allFoundShips.includes(parseInt(s.dataset.id));
+        return allFoundShips.includes(parseInt(s.dataset.id));
       }
+      return false;
     });
 
     if (trs) {
@@ -222,25 +224,16 @@ function ConfigPanel() {
 
           <div className="ship-config">
             <div>
-              <button
-                style={{ width: "100px" }}
-                onClick={() => {
-                  setAllSelectionState(true);
-                }}
-              >
-                select all
-              </button>
-
               <span
                 className="detail"
                 style={{
                   display: "inline-block",
-                  width: "100px",
-                  paddingLeft: "1rem",
+                  width: "80px",
                 }}
               >
-                Select Tier:
+                select:
               </span>
+              <button onClick={() => { setAllSelectionState(true); }} >all</button>
               {TierValues.map((t) => (
                 <button
                   className="detail"
@@ -253,25 +246,16 @@ function ConfigPanel() {
             </div>
 
             <div>
-              <button
-                style={{ width: "100px" }}
-                onClick={() => {
-                  setAllSelectionState(false);
-                }}
-              >
-                unselect all
-              </button>
-
               <span
                 className="detail"
                 style={{
                   display: "inline-block",
-                  width: "100px",
-                  paddingLeft: "1rem",
+                  width: "80px",
                 }}
               >
-                Unselect Tier:
+                deselect:
               </span>
+              <button onClick={() => { setAllSelectionState(false); }} >all</button>
               {TierValues.map((t) => (
                 <button
                   className="detail"
@@ -282,26 +266,22 @@ function ConfigPanel() {
                 </button>
               ))}
             </div>
-            <div className="detail">
-              <span>
-                <p>Select Nation: </p>
-              </span>
-              {NationValues.map((t) => (
-                <button key={t} onClick={() => changeNationSelection(t, true)}>
-                  {t}
-                </button>
-              ))}
-            </div>
 
-            <div className="detail">
-              <span>
-                <p>Select Type </p>
-              </span>
-              {ShipTypeValues.map((t) => (
-                <button key={t} onClick={() => setSelectShipType(t, true)}>
-                  {shipTypeToString(t)}
-                </button>
-              ))}
+            <div style={{ marginTop: "1rem" }} className="detail">
+              <div>
+                {NationValues.map((t) => (
+                  <button key={t} onClick={() => changeNationSelection(t, true)}>
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <div style={{ marginTop: "1rem" }}>
+                {ShipTypeValues.map((t) => (
+                  <button key={t} onClick={() => setSelectShipType(t, true)}>
+                    {shipTypeToString(t)}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
