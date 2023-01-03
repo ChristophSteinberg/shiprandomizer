@@ -17,9 +17,9 @@ function App() {
   return (
     <ConfigContext.Provider value={[config, setConfig]}>
       <div>
+        <PlayPanel />
         <ConfigPanel />
         <Description />
-        <PlayPanel />
       </div>
     </ConfigContext.Provider>
   );
