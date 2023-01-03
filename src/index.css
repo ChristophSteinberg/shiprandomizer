@@ -1,6 +1,6 @@
 :root {
-  --config-background: hsl(0, 0%, 15%);
-  --control-background: hsl(0, 0%, 65%);
+  --background-dark: hsl(0, 0%, 15%);
+  --button-background: hsl(0, 0%, 65%);
 }
 
 html {
@@ -140,7 +140,7 @@ div.go-button {
 }
 
 button {
-  background-color: var(--control-background);
+  background-color: var(--button-background);
   border: none;
   color: rgba(0, 0, 0, 0.685);
   padding: 4px 8px;
@@ -151,7 +151,7 @@ select {
   padding: 4px 3px;
   margin: 3px;
   border: none;
-  background-color: var(--control-background);
+  background-color: var(--button-background);
 }
 
 .button:hover {
@@ -161,7 +161,7 @@ select {
 .config-panel {
   z-index: 50;
   position: absolute;
-  background-color: var(--config-background);
+  background-color: var(--background-dark);
   max-width: 580px;
   box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
 }
@@ -259,7 +259,7 @@ button.go:disabled {
 .config-header {
   position: sticky;
   top: 0;
-  background-color: var(--config-background);
+  background-color: var(--background-dark);
 }
 
 .config-search {
@@ -368,6 +368,15 @@ body {
     width: calc(100% - 80px);
     max-width: none;
     padding: 1rem;
+  }
+
+  .description-panel-open {
+    position: relative;
+    height: auto;
+  }
+
+  .description-panel-toggle {
+    position: sticky;
   }
 
   .side-panel {
