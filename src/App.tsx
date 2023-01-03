@@ -1,5 +1,4 @@
 import { createContext, useEffect, useRef, useState } from "react";
-import "./App.css";
 import useConfig from "./hooks/useConfig";
 import Randomizer from "./service/Randomizer";
 import JSConfetti from "js-confetti";
@@ -49,8 +48,6 @@ function App() {
   return (
     <ConfigContext.Provider value={[config, setConfig]}>
       <div>
-        <ConfigPanel />
-
         <div className="content">
           <div className="panel">
             <div className="logo-top"></div>
@@ -72,6 +69,7 @@ function App() {
           </div>
         </div>
 
+        <ConfigPanel />
         <Description />
       </div>
     </ConfigContext.Provider>

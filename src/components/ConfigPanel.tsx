@@ -214,7 +214,6 @@ function ConfigPanel() {
         style={configVisible ? { display: "block" } : { display: "none" }}
       >
         <div className="config-header">
-          {/* <AudioConfig></AudioConfig> */}
           <Search
             onShipIdsFound={(s) => {
               foundShips(s);
@@ -233,6 +232,7 @@ function ConfigPanel() {
               </button>
 
               <span
+                className="detail"
                 style={{
                   display: "inline-block",
                   width: "100px",
@@ -242,7 +242,11 @@ function ConfigPanel() {
                 Select Tier:
               </span>
               {TierValues.map((t) => (
-                <button key={t} onClick={() => changeTierSelection(t, true)}>
+                <button
+                  className="detail"
+                  key={t}
+                  onClick={() => changeTierSelection(t, true)}
+                >
                   {t}
                 </button>
               ))}
@@ -259,6 +263,7 @@ function ConfigPanel() {
               </button>
 
               <span
+                className="detail"
                 style={{
                   display: "inline-block",
                   width: "100px",
@@ -267,13 +272,15 @@ function ConfigPanel() {
               >
                 Unselect Tier:
               </span>
-              {TierValues.map((t) => (
-                <button key={t} onClick={() => changeTierSelection(t, false)}>
-                  {t}
-                </button>
-              ))}
+              <div className="detail">
+                {TierValues.map((t) => (
+                  <button key={t} onClick={() => changeTierSelection(t, false)}>
+                    {t}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div>
+            <div className="detail">
               <span>
                 <p>Select Nation: </p>
               </span>
@@ -284,7 +291,7 @@ function ConfigPanel() {
               ))}
             </div>
 
-            <div>
+            <div className="detail">
               <span>
                 <p>Select Type </p>
               </span>
@@ -309,6 +316,7 @@ function ConfigPanel() {
               <tr>
                 {FieldValues.map((t) => (
                   <th
+                    className={t === "Id" || t === "Name" ? "" : "detail"}
                     key={t}
                     onClick={() => handleTableHeadClick(t.toLocaleLowerCase())}
                   >
@@ -338,16 +346,16 @@ function ConfigPanel() {
                   >
                     <label htmlFor={`${s.id}`}>{s.name}</label>
                   </td>
-                  <td>
+                  <td className="detail">
                     <label htmlFor={`${s.id}`}>{s.nation}</label>
                   </td>
-                  <td>
+                  <td className="detail">
                     <label htmlFor={`${s.id}`}>{s.tier}</label>
                   </td>
-                  <td>
+                  <td className="detail">
                     <label htmlFor={`${s.id}`}>{s.kind}</label>
                   </td>
-                  <td>
+                  <td className="detail">
                     <label htmlFor={`${s.id}`}>
                       {shipTypeToString(s.type)}
                     </label>

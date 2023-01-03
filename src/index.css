@@ -56,29 +56,8 @@ input[type="text"] {
   background-color: hsla(0, 0%, 0%, 0.2);
 }
 
-@media (max-width: 700px) {
-  .panel {
-    width: 100%;
-  }
-  .logo-top {
-    margin-left: 3rem;
-    margin-right: 3rem;
-  }
-}
-
-@media (min-width: 700px) {
-  .panel {
-    width: 550px;
-  }
-  .logo-top {
-    margin-top: 7rem;
-  }
-}
-
 .logo-top {
-  margin-top: 20%;
   margin-bottom: 10%;
-
   height: 5rem;
   display: flex;
   justify-content: center;
@@ -167,9 +146,7 @@ select {
 }
 
 .config-panel {
-  z-index: 99;
-  margin: 1rem;
-  padding: 1rem;
+  z-index: 50;
   position: absolute;
   background-color: var(--config-background);
   max-width: 580px;
@@ -198,15 +175,9 @@ button.go:disabled {
 
 .config-button-panel {
   position: fixed;
-  z-index: 99;
   cursor: pointer;
   width: 50px;
   margin-top: 18px;
-}
-
-.config-button-panel-open {
-  position: absolute;
-  left: 628px;
 }
 
 .config-button-toggle {
@@ -276,7 +247,6 @@ button.go:disabled {
 }
 
 .config-header {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: var(--config-background);
@@ -314,6 +284,7 @@ body {
 }
 
 .description-panel-closed {
+  z-index: 50;
   height: 100px;
   width: auto;
   overflow: auto;
@@ -334,8 +305,6 @@ body {
 
 .side-panel {
   display: initial;
-  max-width: 400px;
-  height: 480px;
   flex-shrink: 0;
   padding: 20px;
   color: #ffffff;
@@ -358,4 +327,75 @@ body {
 
 .button:hover {
   background-color: #3e8e41;
+}
+
+/* small */
+@media (max-width: 700px) {
+  .panel {
+    width: 100%;
+  }
+  .logo-top {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 1rem;
+  }
+
+  .detail {
+    display: none;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: collapse;
+  }
+
+  .config-button-panel-open {
+    position: fixed;
+    right: 0px;
+    z-index: 100;
+  }
+
+  .config-panel {
+    width: calc(100% - 80px);
+    max-width: none;
+    padding: 1rem;
+  }
+
+  .side-panel {
+    max-width: calc(100% - 80px);
+    height: calc(100% - 80px);
+  }
+
+  .config-search {
+    display: none;
+  }
+}
+
+@media (max-height: 700px) {
+  .config-header {
+    position: static;
+  }
+}
+
+@media (min-width: 700px) {
+  .panel {
+    width: 550px;
+  }
+  .logo-top {
+    margin-top: 7rem;
+    margin-top: 20%;
+  }
+
+  .config-button-panel-open {
+    left: 628px;
+  }
+
+  .config-panel {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .side-panel {
+    max-width: 400px;
+    height: 480px;
+  }
 }
