@@ -4,12 +4,11 @@ A simple random ship selector for **World of Warships**
 
 <https://christophsteinberg.github.io/shiprandomizer/>
 
-## Run local
+## Developer info
 
-To run the shiprandomizer localy you need a webserver.  
-You can use `npx server` or any other webserver.
+### Install nodejs and Visual Studio Code (Windows)
 
-### Windows 
+<https://code.visualstudio.com/>  
 
 Download the git repository and open command shell ```cmd.exe```.  
 Install node.js with winget:  
@@ -20,25 +19,25 @@ winget install nodejs
 
 Restart the ```cmd.exe``` and start the webserver
 
+### Run and build the app
+
+First you have to install all npm packages:  
+
 ```bash
-npx serve
+npm install
 ```
 
-Open a Webbrowser:   
-<http://localhost:3000/>
+To start the vite development environment:  
 
-### Linux 
-You know the trick ;-) Install node.js und run ```npx server``
+```bash
+npm run dev
+```
 
-## Why not vite or webpack?
+To build the project:  
 
-Yes, vite or webpack (create-react-app) should be used.  
-But, not everyone is a Javascript/TypeScript hacker, so: K.I.S.S.  
-If I taught JavaScript/TypeScript, node.js, prettier, eslint, package.json, npm,.. to all users for local use, then of course we switch this over. ;-)
-
-## Electron
-
-An electron app should be nice... later
+```bash
+npm run build
+```
 
 ---
 For Graf_d 😉

@@ -224,19 +224,19 @@ function ConfigPanel() {
 
           <div className="ship-config">
             <div>
-              <span
-                className="detail"
-                style={{
-                  display: "inline-block",
-                  width: "80px",
-                }}
-              >
-                select:
-              </span>
+              <div>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "80px",
+                  }}
+                >
+                  select:
+                </span>
+              </div>
               <button onClick={() => { setAllSelectionState(true); }} >all</button>
               {TierValues.map((t) => (
                 <button
-                  className="detail"
                   key={t}
                   onClick={() => changeTierSelection(t, true)}
                 >
@@ -246,19 +246,19 @@ function ConfigPanel() {
             </div>
 
             <div>
-              <span
-                className="detail"
-                style={{
-                  display: "inline-block",
-                  width: "80px",
-                }}
-              >
-                deselect:
-              </span>
+              <div>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "80px",
+                  }}
+                >
+                  deselect:
+                </span>
+              </div>
               <button onClick={() => { setAllSelectionState(false); }} >all</button>
               {TierValues.map((t) => (
                 <button
-                  className="detail"
                   key={t}
                   onClick={() => changeTierSelection(t, false)}
                 >
