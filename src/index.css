@@ -1,39 +1,38 @@
 :root {
+  --foreground: hsl(0, 0%, 90%);
+  --foreground-highlight-light: hsl(50, 100%, 50%);
+  --foreground-highlight-dark:hsl(50, 70%, 15%);
   --background-dark: hsl(0, 0%, 15%);
   --button-background: hsl(0, 0%, 65%);
+  --button-background-hover: hsl(0, 0%, 75%);
 }
 
 html {
   background: url(assets/images/background.jpg) no-repeat center center fixed;
   background-size: cover;
-  background-color: #1e1e1e;
-  color: lightgray;
+  background-color: var(--background-dark);
+  color: var(--foreground);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {
-  background-color: hsl(0, 0%, 50%);
+  background-color: var(--button-background);
+  border: none;
+  color: rgba(0, 0, 0, 0.685);
+  padding: 4px 8px;
+  margin: 1px;
+
 }
 
 button:hover {
-  background-color: hsl(0, 0%, 60%);
+  background-color: var(--button-background-hover);
 }
 
-a {
-  color: orange;
-}
-
-a.button {
-  color: hsl(0, 0%, 20%);
-  text-decoration: none;
-}
-
-a:visited {
-  color: rgb(173, 8, 8);
-}
-
-a:active {
-  color: rgb(9, 11, 161);
+select {
+  padding: 4px 3px;
+  margin: 3px;
+  border: none;
+  background-color: var(--button-background);
 }
 
 input[type="text"] {
@@ -55,22 +54,15 @@ input[type="text"] {
 .logo-top {
   margin-bottom: 10%;
   height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: url(assets/images/logo-top.png) no-repeat center center;
-  background-size: contain;
+
 }
 
 .logo-bottom {
   margin-top: 4rem;
   margin-bottom: 2rem;
   height: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: url(assets/images/logo-bottom.png) no-repeat center center;
-  background-size: contain;
 }
 
 .empty-bottom {
@@ -78,57 +70,44 @@ input[type="text"] {
   height: 100vh;
 }
 
-.ship-name {
-  height: 5rem;
-  font-size: xx-large;
-  font-family: Georgia, sans-serif;
-  font-weight: bold;
-  text-decoration-line: underline;
-  text-decoration-style: double;
-  text-decoration-color: rgb(129, 0, 0);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #806c16, #ffd30fc2);
-  -webkit-text-fill-color: transparent;
-  color: rgb(208, 255, 0);
+.logo {
+  background-size: contain;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.ship-property {
+  font-family: Georgia, sans-serif;
+  font-weight: bold;
+  text-decoration-color: var(--foreground-highlight-dark);
+  background-clip: text;
+  background-image: linear-gradient(to right,var(--foreground-highlight-dark), var(--foreground-highlight-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  color: var(--foreground-highlight-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship-name {
+  height: 5rem;
+  font-size: xx-large;
+  text-decoration-line: underline;
+  text-decoration-style: double;
 }
 
 .ship-nation {
   height: 3rem;
   font-size: x-large;
-  font-family: Georgia, sans-serif;
-  font-weight: bold;
-  text-decoration-color: rgb(129, 0, 0);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #806c16, #ffd30fc2);
-  -webkit-text-fill-color: transparent;
-  color: rgb(208, 255, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .ship-tier {
   height: 2rem;
   font-size: x-large;
-  font-family: Georgia, sans-serif;
-  font-weight: bold;
-  text-decoration-color: rgb(129, 0, 0);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #806c16, #ffd30fc2);
-  -webkit-text-fill-color: transparent;
-  color: rgb(208, 255, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 div.go-button {
@@ -139,24 +118,6 @@ div.go-button {
   align-items: center;
 }
 
-button {
-  background-color: var(--button-background);
-  border: none;
-  color: rgba(0, 0, 0, 0.685);
-  padding: 4px 8px;
-  margin: 1px;
-}
-
-select {
-  padding: 4px 3px;
-  margin: 3px;
-  border: none;
-  background-color: var(--button-background);
-}
-
-.button:hover {
-  background-color: #3e8e41;
-}
 
 .config-panel {
   z-index: 50;

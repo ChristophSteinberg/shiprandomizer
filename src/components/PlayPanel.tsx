@@ -34,12 +34,12 @@ export default function PlayPanel() {
   return (
     <div className="content">
       <div className="panel">
-        <div className="logo-top"></div>
-        <div className="ship-name">{currentShip && currentShip.name}</div>
-        <div className="ship-nation">
+        <div className="logo logo-top"></div>
+        <div className="ship-property ship-name">{currentShip && currentShip.name}</div>
+        <div className="ship-property ship-nation">
           {currentShip && currentShip.nation}
         </div>
-        <div className="ship-tier">{currentShip && currentShip.tier}</div>
+        <div className="ship-property ship-tier">{currentShip && currentShip.tier}</div>
         <div className="go-button">
           <button
             onClick={goHandler}
@@ -47,7 +47,7 @@ export default function PlayPanel() {
             className="go"
           ></button>
         </div>
-        <div className="logo-bottom"></div>
+        <div className="logo logo-bottom"></div>
         <div className="empty-bottom"></div>
       </div>
     </div>
