@@ -35,11 +35,11 @@ export default function PlayPanel() {
     <div className="content">
       <div className="panel">
         <div className="logo-top"></div>
-        <div className="ship-name">{currentShip ? currentShip.name : ""}</div>
+        <div className="ship-name">{currentShip && currentShip.name}</div>
         <div className="ship-nation">
-          {currentShip ? currentShip.nation : ""}
+          {currentShip && currentShip.nation}
         </div>
-        <div className="ship-tier">{currentShip ? currentShip.tier : ""}</div>
+        <div className="ship-tier">{currentShip && currentShip.tier}</div>
         <div className="go-button">
           <button
             onClick={goHandler}

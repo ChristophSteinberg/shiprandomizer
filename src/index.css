@@ -169,6 +169,7 @@ select {
 button.go {
   top: 50%;
   left: 50%;
+  background-color: transparent;
   background-image: url("assets/images/button-go.png");
   border-radius: 108px;
   border: -1px double #cccccc;
