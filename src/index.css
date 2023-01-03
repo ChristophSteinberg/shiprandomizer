@@ -12,15 +12,11 @@ html {
 }
 
 button {
-  background-color: yellow;
+  background-color: hsl(0, 0%, 50%);
 }
 
 button:hover {
-  background-color: orange;
-}
-
-button:focus {
-  background-color: red;
+  background-color: hsl(0, 0%, 60%);
 }
 
 a {
@@ -28,7 +24,7 @@ a {
 }
 
 a.button {
-  color: green;
+  color: hsl(0, 0%, 20%);
   text-decoration: none;
 }
 
@@ -214,16 +210,12 @@ button.go:disabled {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  color: #ffffff;
-  background: hsl(0, 0%, 30%);
   border: none;
   border-radius: 5px 0 0 5px;
   outline: none;
   cursor: pointer;
-}
-
-.description-panel-toggle:hover {
-  background: #08df25;
+  background-color: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 100%);
 }
 
 .config-section {
@@ -308,12 +300,12 @@ body {
   flex-shrink: 0;
   padding: 20px;
   color: #ffffff;
-  background: rgb(22, 94, 153);
+  background: hsl(0, 0%, 25%);
   box-shadow: 0 0 20px rgba(0, 0, 0, 1.35);
 }
 
 .button {
-  background-color: #003a91; /* Grün */
+  background-color: hsl(120, 30%, 30%);
   border: none;
   color: white;
   padding: 15px 22px;
@@ -326,7 +318,7 @@ body {
 }
 
 .button:hover {
-  background-color: #3e8e41;
+  background-color: hsl(120, 30%, 40%);
 }
 
 /* small */

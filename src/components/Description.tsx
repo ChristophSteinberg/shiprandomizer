@@ -59,7 +59,7 @@ export default function Description() {
                 target="_blank"
               >
                 <button className="button">
-                  a small donation for webhosting would make me happy 🙃
+                  A small donation for webhosting would make me happy 🙃
                 </button>
               </a>
             </div>
