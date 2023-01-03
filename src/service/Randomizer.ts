@@ -14,6 +14,7 @@ export default class Randomizer {
 
   start() {
     this.#interval = setInterval(() => {
+      console.log("x");
       const shipsToChoose = this.ships.filter((s) => s.selected);
       const random = Math.floor(Math.random() * shipsToChoose.length);
       if (this.changeShipHandler != null) {
