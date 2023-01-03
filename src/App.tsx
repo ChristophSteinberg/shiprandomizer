@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import useConfig from "./hooks/useConfig";
 import Randomizer from "./service/Randomizer";
 import JSConfetti from "js-confetti";
@@ -13,27 +13,27 @@ const defaultValue: ConfigContextType = [DefaultConfig, (config: Config) => {}];
 
 export const ConfigContext = createContext<ConfigContextType>(defaultValue);
 
+const randomizer = new Randomizer();
+const jsConfetti = new JSConfetti();
+
 function App() {
   const [config, setConfig] = useConfig();
   const [currentShip, setCurrentShip] = useState<Ship>();
   const [running, setRunning] = useState(false);
 
-  const randomizer = useRef(new Randomizer());
-  const jsConfetti = useRef(new JSConfetti());
-
   function goHandler() {
     setRunning(true);
-    randomizer.current.ships = config.ships;
-    randomizer.current.start();
-    randomizer.current.changeShipHandler = (ship) => {
+    randomizer.ships = config.ships;
+    randomizer.start();
+    randomizer.changeShipHandler = (ship) => {
       setCurrentShip(ship);
     };
-    randomizer.current.randomizerStoppedHandler = () => {
+    randomizer.randomizerStoppedHandler = () => {
       var audio = new Audio(`sounds/${config.sound.file}.mp3`);
       audio.volume = config.sound ? config.sound.volume : 0.3;
       audio.play();
 
-      jsConfetti.current.addConfetti({
+      jsConfetti.addConfetti({
         emojis: ["💀", "⚓"],
         // emojis: [...getConfig().explosionIcons],
       });
@@ -42,7 +42,7 @@ function App() {
   }
 
   useEffect(() => {
-    return () => randomizer.current.stop();
+    return () => randomizer.stop();
   }, []);
 
   return (
