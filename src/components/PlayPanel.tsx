@@ -39,6 +39,7 @@ export default function PlayPanel() {
         <div className="ship-nation">
           {currentShip ? currentShip.nation : ""}
         </div>
+        <div className="ship-tier">{currentShip ? currentShip.tier : ""}</div>
         <div className="go-button">
           <button
             onClick={goHandler}

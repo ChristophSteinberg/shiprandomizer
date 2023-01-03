@@ -63,7 +63,7 @@ input[type="text"] {
 }
 
 .logo-bottom {
-  margin-top: 7rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   height: 10rem;
   display: flex;
@@ -99,6 +99,23 @@ input[type="text"] {
 
 .ship-nation {
   height: 3rem;
+  font-size: x-large;
+  font-family: Georgia, sans-serif;
+  font-weight: bold;
+  text-decoration-color: rgb(129, 0, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #806c16, #ffd30fc2);
+  -webkit-text-fill-color: transparent;
+  color: rgb(208, 255, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship-tier {
+  height: 2rem;
   font-size: x-large;
   font-family: Georgia, sans-serif;
   font-weight: bold;
